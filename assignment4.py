@@ -1,10 +1,26 @@
 
 
 Assignment 4:
-1.Write a Python program to create a lambda function that adds 15 to a given number passed in as an argument, also create a lambda function that multiplies argument x with argument y and prints the result. 
+1.Write a Python program to create a lambda function that adds 15 to a given number passed in as an argument, 
+also create a lambda function that multiplies argument x with argument y and prints the result. 
+ 
  Sample Output: 
  25 
  48 
+
+# :: Solution ::
+adds_15 = lambda x: x + 15
+
+adds_15(10)
+# =>
+25
+
+multiplies_x_with_y = lambda x,y: x*y
+
+multiplies_x_with_y(12,4)
+# =>
+48
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 2.Write a Python program to create a function that takes one argument, and that argument will be multiplied with an unknown given number. 
  Sample Output: 
