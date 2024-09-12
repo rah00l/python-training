@@ -23,11 +23,34 @@ multiplies_x_with_y(12,4)
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 2.Write a Python program to create a function that takes one argument, and that argument will be multiplied with an unknown given number. 
+ 
  Sample Output: 
  Double the number of 15 = 30 
  Triple the number of 15 = 45 
  Quadruple the number of 15 = 60 
  Quintuple the number 15 = 75 
+
+ # :: Solution ::
+ def my_multiplier(n):
+     return lambda a : a * n
+
+double_the_number = my_multiplier(15)
+print(double_the_number(2))
+# 30
+
+triple_the_number = my_multiplier(15)
+print(triple_the_number(3))
+# 45
+
+quadruple_the_number = my_multiplier(15)
+print(quadruple_the_number(4))
+# 60
+
+quintuple_the_number = my_multiplier(15)
+print(quintuple_the_number(5))
+# 75
+
+ --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 3.Write a Python program to sort a list of tuples using Lambda. 
  Original list of tuples: 
