@@ -72,10 +72,36 @@ list_of_tuples
  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 4.Write a Python program to sort a list of dictionaries using Lambda. 
+ 
  Original list of dictionaries : 
+
  [{'make': 'Nokia', 'model': 216, 'color': 'Black'}, {'make': 'Mi Max', 'model': '2', 'color': 'Gold'}, {'make': 'Samsung', 'model': 7, 'color': 'Blue'}] 
+ 
  Sorting the List of dictionaries : 
+
  [{'make': 'Nokia', 'model': 216, 'color': 'Black'}, {'make': 'Samsung', 'model': 7, 'color': 'Blue'}, {'make': 'Mi Max', 'model': '2', 'color': 'Gold'}] 
+
+# :: Solution ::
+print("Original list of dictionaries : ")
+
+list_of_dictionaries = [{'make': 'Nokia', 'model': 216, 'color': 'Black'}, {'make': 'Mi Max', 'model': '2', 'color': 'Gold'}, {'make': 'Samsung', 'model': 7, 'color': 'Blue'}] 
+
+list_of_dictionaries
+
+[{'make': 'Nokia', 'model': 216, 'color': 'Black'},
+ {'make': 'Mi Max', 'model': '2', 'color': 'Gold'},
+ {'make': 'Samsung', 'model': 7, 'color': 'Blue'}]
+
+# sort on model key 
+list_of_dictionaries.sort(key=lambda ld:int(ld['model']))
+
+# In revese order of model key 
+list_of_dictionaries.sort(key=lambda ld:int(ld['model']), reverse=True)
+
+print("Sorting the List of Tuples: ")
+list_of_dictionaries
+
+ --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 5.Write a Python program to filter a list of integers using Lambda. 
  Original list of integers: 
