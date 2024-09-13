@@ -123,18 +123,48 @@ list_of_integers
 print("Even numbers from the said list: ")
 list(filter(lambda ls: (ls%2 == 0), list_of_integers))
 
+#=>
+[2, 4, 6, 8, 10]
+
+
 print("Odd numbers from the said list:")
 list(filter(lambda ls: (ls%2 != 0), list_of_integers))
+
+#=>
+[1, 3, 5, 7, 9]
 
  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 6.Write a Python program to square and cube every number in a given list of integers using Lambda. 
  Original list of integers: 
  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+ 
  Square every number of the said list: 
  [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] 
+ 
  Cube every number of the said list: 
  [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000] 
+
+
+# :: Solution ::
+print("Original list of integers:")
+
+list_of_integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+list_of_integers
+
+print("Square every number of the said list: ")
+list(map(lambda ls: ls*ls , list_of_integers))
+
+#=>
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+print("Odd numbers from the said list:")
+list(map(lambda ls: ls*ls*ls , list_of_integers))
+
+#=>
+[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 7.Write a Python program to find if a given string starts with a given character using Lambda. 
  Sample Output: 
