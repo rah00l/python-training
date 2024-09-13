@@ -171,6 +171,19 @@ list(map(lambda ls: ls*ls*ls , list_of_integers))
  True 
  False 
 
+# :: Solution ::
+print("program to find if a given string starts with a given character using Lambda.")
+
+starts_with = lambda x: True if x.startswith('H') else False
+
+print(starts_with('Hello World!'))
+True
+
+print(starts_with('Thank You!'))
+False
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---  
+
 8.Write a Python program to extract year, month, date and time using Lambda. 
  Sample Output: 
  2020-01-15 09:03:32.744178 
