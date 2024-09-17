@@ -190,7 +190,43 @@ False
  2020 
  1 
  15 
- 09:03:32.744178 
+ 09:03:32.744178
+
+# :: Solution ::
+print("a Python program to extract year, month, date and time using Lambda. ")
+
+# Import the 'datetime' module to work with date and time
+import datetime
+
+current = datetime.datetime.now()
+
+print(current)
+
+# Lambda function to extract the 'year' from a given datetime object
+		year = lambda x: x.year
+
+# Lambda function to extract the 'month' from a given datetime object
+	 month = lambda x: x.month
+
+# Lambda function to extract the 'date' from a given datetime object
+	 day = lambda x: x.day
+
+ # Lambda function to extract the time from a given datetime object '
+ 	time = lambda x: x.time()
+
+ # Print the year extracted from the current datetime object 'now'
+ 	print(year(current))
+
+ # Print the month extracted from the current datetime object 'now'
+ 	print(month(current))
+
+ # Print the day extracted from the current datetime object 'now'
+ 	print(day(current)
+
+ # Print the time extracted from the current datetime object 'now'
+ 	print(time(current))
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---  
 
 9.Write a Python program to check whether a given string is a number or not using Lambda. 
  Sample Output: 
