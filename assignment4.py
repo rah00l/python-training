@@ -240,6 +240,19 @@ print(current)
  True 
  True 
 
+# :: Solution ::
+print("a Python program to extract year, month, date and time using Lambda. ")
+
+is_a_num = lambda arg: arg.replace('.', '', 1).isdigit() if isinstance(arg, str) else False
+
+# Testing with various inputs
+print(is_a_num('123'))   # True
+print(is_a_num('45.67')) # True
+print(is_a_num('abc'))   # False
+print(is_a_num('0'))     # True
+print(is_a_num(123))     # False, since it's not a string
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---  
 10.Write a Python program to create Fibonacci series up to n using Lambda. 
  Fibonacci series upto 2: 
  [0, 1] 
