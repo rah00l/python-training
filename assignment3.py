@@ -109,5 +109,49 @@ ll.delete(4)  # Node with data 4 not found.
 Include methods for adding and removing items, and calculating the total price.
 
 
+# :: Solution ::
+
+class ShoppingCart:
+    def __init__(self):
+        self.cart = {}
+
+    def add_item(self, item_name, price, quantity=1):
+        if item_name in self.cart:
+            self.cart[item_name]['quantity'] += quantity
+        else:
+            self.cart[item_name] = {'price': price, 'quantity': quantity}
+        print(f'Added {quantity} of {item_name} to cart.')
+
+    def remove_item(self, item_name):
+        if item_name in self.cart:
+            del self.cart[item_name]
+            print(f'Removed {item_name} from cart.')
+        else:
+            print(f'{item_name} is not in the cart.')
+
+    def total_price(self):
+        total = sum(item['price'] * item['quantity'] for item in self.cart.values())
+        return total
+
+    def display_cart(self):
+        if not self.cart:
+            print("Cart is empty.")
+        else:
+            print("Items in cart:")
+            for item, details in self.cart.items():
+                print(f"{item}: {details['quantity']} @ ${details['price']} each")
+
+
+# Example usage:
+cart = ShoppingCart()
+cart.add_item("Apple", 1.5, 3)
+cart.add_item("Banana", 0.75, 5)
+cart.display_cart()
+print(f"Total price: ${cart.total_price():.2f}")  # Total price: $8.25
+cart.remove_item("Banana")
+cart.display_cart()
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 4. Write a Python program to create a class representing a stack data structure. Include methods for pushing, popping and displaying elements.
