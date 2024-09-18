@@ -127,17 +127,85 @@ print(intersection)
 
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-With a given list [12,24,35,24,88,120,155,88,120,155], write a program to print this list after removing all duplicate values with original order reserved. 
+
+9. With a given list [12,24,35,24,88,120,155,88,120,155], write a program to 
+  print this list after removing all duplicate values with original order reserved. 
+
+# :: Solution ::
+  lst = [12, 24, 35, 24, 88, 120, 155, 88, 120, 155]
+
+  result = []
+  [result.append(x) for x in lst if x not in result]
+  print(result)  
+
+Output: [12, 24, 35, 88, 120, 155]
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+ 10. By using list comprehension, please write a program to print the list after removing the value 24 in [12,24,35,24,88,120,155]. 
+
+
+# :: Solution ::
+ lst = [12, 24, 35, 24, 88, 120, 155]
+ result = [x for x in lst if x != 24]
+ print(result)
+
+Output: [12, 35, 88, 120, 155]
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+11. By using list comprehension, please write a program to print the list after removing the 0th,4th,5th numbers in [12,24,35,70,88,120,155]. 
+
+
+# :: Solution ::
+ lst = [12, 24, 35, 24, 88, 120, 155]
+ result = [x for x in lst if x != 24]
+ print(result)
+
+Output: [12, 35, 88, 120, 155]
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+12. By using list comprehension, please write a program to print the list after removing delete numbers 
+which are divisible by 5 and 7 in [12,24,35,70,88,120,155]. 
+
+# :: Solution ::
+
+lst = [12, 24, 35, 70, 88, 120, 155]
+result = [x for x in lst if not (x % 5 == 0 and x % 7 == 0)]
+print(result)
+
+Output: [12, 24, 88]
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+13. Please write a program to randomly generate a list with 5 numbers, which are divisible by 5 and 7 , between 1 and 1000 inclusive.
+
+
+# :: Solution ::
+import random
+
+result = random.sample([x for x in range(1, 1001) if x % 35 == 0], 5)
+print(result)
 
 
 
- By using list comprehension, please write a program to print the list after removing the value 24 in [12,24,35,24,88,120,155]. 
- By using list comprehension, please write a program to print the list after removing the 0th,4th,5th numbers in [12,24,35,70,88,120,155]. 
-. By using list comprehension, please write a program to print the list after removing delete numbers which are divisible by 5 and 7 in [12,24,35,70,88,120,155]. 
-Please write a program to randomly generate a list with 5 numbers, which are divisible by 5 and 7 , between 1 and 1000 inclusive. 
-Write a program to compute 1/2+2/3+3/4+...+n/n+1 with a given n input by console (n>0). 
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+14. Write a program to compute 1/2+2/3+3/4+...+n/n+1 with a given n input by console (n>0). 
 
 Example: If the following n is given as input to the program: 5 
 Then, the output of the program should be: 3.55  
 
-15.
+# :: Solution ::
+
+n = int(input("Enter n: "))
+result = sum(i / (i + 1) for i in range(1, n + 1))
+print(f"{result:.2f}")
+
+Example Input: 5
+Output: 3.55
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
