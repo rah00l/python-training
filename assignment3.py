@@ -154,4 +154,48 @@ cart.display_cart()
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
-4. Write a Python program to create a class representing a stack data structure. Include methods for pushing, popping and displaying elements.
+4. Write a Python program to create a class representing a stack data structure. 
+Include methods for pushing, popping and displaying elements.
+
+# :: Solution ::
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, element):
+        self.stack.append(element)
+        print(f'Pushed {element} to stack.')
+
+    def pop(self):
+        if not self.is_empty():
+            element = self.stack.pop()
+            print(f'Popped {element} from stack.')
+            return element
+        else:
+            print('Stack is empty!')
+            return None
+
+    def display(self):
+        if self.is_empty():
+            print("Stack is empty!")
+        else:
+            print("Stack:", self.stack)
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+
+# Example usage:
+s = Stack()
+s.push(5)
+s.push(10)
+s.push(15)
+s.display()  # Stack: [5, 10, 15]
+s.pop()      # Popped 15
+s.display()  # Stack: [5, 10]
+
+
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
