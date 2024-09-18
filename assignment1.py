@@ -49,23 +49,48 @@ else:
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
-3. Write a for loop that prints all elements of a list and their position in the list.      
+4. Write a for loop that prints all elements of a list and their position in the list.      
   a = [4,7,3,2,5,9]  
 
   # :: Solution ::
-  ['john', 'peter']
+  a = [4, 7, 3, 2, 5, 9]
+
+  for index, value in enumerate(a):
+      print(f'Element {value} is at position {index}')
+
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---   
 
- Please write a program which accepts a string from console and print the characters that have even indexes. 
+5. Please write a program which accepts a string from console and print the characters that have even indexes. 
 Example: If the following string is given as input to the program: H1e2l3l4o5w6o7r8l9d 
 Then, the output of the program should be: Helloworld 
 
-Please write a program which accepts a string from console and print it in reverse order.
+# :: Solution ::
+
+s = input("Enter a string: ")
+print(s[::2])
+
+# Example Input: H1e2l3l4o5w6o7r8l9d
+# Output: Helloworld
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+6. Please write a program which accepts a string from console and print it in reverse order.
 
  Example: If the following string is given as input to the program:  rise to vote sir 
 Then, the output of the program should be: ris etov ot esir
 
-Please write a program which count and print the numbers of each character in a string input by console. 
+# :: Solution ::
+
+s = input("Enter a string: ")
+print(s[::-1])
+
+Example Input: rise to vote sir
+Output: ris etov ot esir
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+7. Please write a program which count and print the numbers of each character in a string input by console. 
 Example: If the following string is given as input to the program: abcdefgabc 
 Then, the output of the program should be: 
 a,2
@@ -76,8 +101,36 @@ d,1
 g,1
 f,1
 
-With two given lists [1,3,6,78,35,55] and [12,24,35,24,88,120,155], write a program to make a list whose elements are intersection of the above given lists. 
+
+# :: Solution ::
+from collections import Counter
+
+s = input("Enter a string: ")
+counter = Counter(s)
+
+for char, count in counter.items():
+    print(f'{char},{count}')
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+8. With two given lists [1,3,6,78,35,55] and [12,24,35,24,88,120,155], write a program to make a list 
+whose elements are intersection of the above given lists. 
+
+
+# :: Solution ::
+
+array1 = [1,3,6,78,35,55]
+array2 = [12,24,35,24,88,120,155]
+
+intersection = list(filter(lambda x: x in array2, array1))
+print(intersection)
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 With a given list [12,24,35,24,88,120,155,88,120,155], write a program to print this list after removing all duplicate values with original order reserved. 
+
+
+
  By using list comprehension, please write a program to print the list after removing the value 24 in [12,24,35,24,88,120,155]. 
  By using list comprehension, please write a program to print the list after removing the 0th,4th,5th numbers in [12,24,35,70,88,120,155]. 
 . By using list comprehension, please write a program to print the list after removing delete numbers which are divisible by 5 and 7 in [12,24,35,70,88,120,155]. 
