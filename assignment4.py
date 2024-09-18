@@ -253,6 +253,7 @@ print(is_a_num('0'))     # True
 print(is_a_num(123))     # False, since it's not a string
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---  
+
 10.Write a Python program to create Fibonacci series up to n using Lambda. 
  Fibonacci series upto 2: 
  [0, 1] 
@@ -263,6 +264,35 @@ print(is_a_num(123))     # False, since it's not a string
  Fibonacci series upto 9: 
  [0, 1, 1, 2, 3, 5, 8, 13, 21] 
 
+
+# :: Solution ::
+ # How the Fibonacci Sequence Works:
+ # The first two numbers are 0 and 1.
+ # Every subsequent number is the sum of the previous two numbers.
+
+ 	# F(n) = F(n-1) + F(n-2)
+ 
+ # For example:
+
+ # F(2) = F(1) + F(0) = 1 + 0 = 1
+ # F(3) = F(2) + F(1) = 1 + 1 = 2
+ # F(4) = F(3) + F(2) = 2 + 1 = 3
+
+print("a Python program to create Fibonacci series up to n using Lambda. ")
+
+from functools import reduce
+
+# Using a single lambda function inside reduce to generate the Fibonacci series
+fibonacci_series = lambda n: reduce(lambda x, _: x + [x[-1] + x[-2]], range(n-1), [0, 1])[:n]
+
+# Example usage:
+print(f"Fibonacci series up to 2: {fibonacci_series(2)}")  # [0, 1]
+print(f"Fibonacci series up to 5: {fibonacci_series(5)}")  # [0, 1, 1, 2, 3]
+print(f"Fibonacci series up to 6: {fibonacci_series(6)}")  # [0, 1, 1, 2, 3, 5]
+print(f"Fibonacci series up to 9: {fibonacci_series(9)}")  # [0, 1, 1, 2, 3, 5, 8, 13, 21]
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---  
 11.Write a Python program to find the intersection of two given arrays using Lambda. 
  Original arrays: 
  [1, 2, 3, 5, 7, 8, 9, 10] 
