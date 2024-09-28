@@ -40,7 +40,48 @@ greet(name="Alice")  # Logs the arguments and return value for 'greet'
 
 2. Write a Python program to create a decorator function to measure the execution time of a function.
 
+# :: Solution ::
+
+
+import time
+
+# Decorator to measure execution time
+def measure_execution_time_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()	# Record the start time
+        print("Start Time:", start_time)
+        result = func(*args, **kwargs)	# Call the original function
+        end_time = time.time()
+        print("End Time:", end_time) # Record the end time
+        execution_time = end_time - start_time	# Calculate execution time
+        print("Exection Time:", execution_time)
+        return result
+    return wrapper
+
+# Example function using the decorator
+@measure_execution_time_decorator
+def greet(name, age):
+    print("Name:", name)
+    print("Age:", age)    
+
+
+# Call the decorated function
+greet('Rahul', 24)
+
+# Output 
+Start Time: 1727535193.885
+Name: Rahul
+Age: 24
+End Time: 1727535193.8860002
+Exection Time: 0.0010001659393310547
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 3. Write a Python program to create a decorator to convert the return value of a function to a specified data type.
+
+
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 4. Write a Python program that implements a decorator to cache the result of a function.
 
