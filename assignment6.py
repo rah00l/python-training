@@ -482,4 +482,48 @@ List length: 1000000
 12. Write a Python program that implements a decorator to provide caching with expiration time for a function.
 
 
+# :: Solution ::
 
+import time
+
+def cache_with_expiration(expiration_time):
+    """Decorator to cache function results with an expiration time."""
+    cache = {}
+
+    def decorator(func):
+        def wrapper(*args):
+            current_time = time.time()
+
+            # Check if result is cached and still valid
+            if args in cache:
+                result, timestamp = cache[args]
+                if current_time - timestamp < expiration_time:
+                    return result  # Return cached result if not expired
+
+            # Otherwise, compute the result and cache it
+            result = func(*args)
+            cache[args] = (result, current_time)
+            return result
+
+        return wrapper
+    return decorator
+
+@cache_with_expiration(5)  # Cache results for 5 seconds
+def slow_function(n):
+    """A dummy function that simulates a slow operation."""
+    time.sleep(2)  # Simulate a delay
+    return n * 2
+
+# Example usage
+if __name__ == "__main__":
+    print(slow_function(3))  # Takes 2 seconds
+    print(slow_function(3))  # Cached, returns instantly
+    time.sleep(6)            # Wait for cache to expire
+    print(slow_function(3))  # Takes 2 seconds again after expiration
+
+# Output
+6
+6
+6
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
