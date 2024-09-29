@@ -169,6 +169,9 @@ square(6)
 
 5. Write a Python program that implements a decorator to validate function arguments based on a given condition.
 
+
+# :: Solution ::
+
 def validate_arguments(func):
     def wrapper(a, b):
         if a > 0 and b > 0: # Validate arguments
@@ -260,6 +263,44 @@ Server is up!
 
 7. Write a Python program that implements a decorator to enforce rate limits on a function.
 
+# :: Solution ::
+import time
+from functools import wraps
+
+# Rate limit decorator
+def rate_limit(max_calls, period):
+    def decorator(func):
+        last_called = [0.0]  # Use a list to persist the state across calls
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            current_time = time.time()
+            elapsed_time = current_time - last_called[0]
+
+            if elapsed_time < period:
+                wait_time = period - elapsed_time
+                print(f"Rate limit exceeded. Please wait {wait_time:.2f} seconds.")
+                time.sleep(wait_time)
+
+            last_called[0] = time.time()  # Update the last called time
+            return func(*args, **kwargs)
+
+        return wrapper
+    return decorator
+
+@rate_limit(max_calls=1, period=5)  # Allow 1 call every 5 seconds
+def greet(name):
+    print(f"Hello, {name}!")
+
+# Output :
+greet('Rahul')
+
+greet('Rahul')
+
+Rate limit exceeded. Please wait 0.80 seconds.
+Hello, Rahul!
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 8. Write a Python program that implements a decorator to add logging functionality to a function.
 
 9. Write a Python program that implements a decorator to handle exceptions raised by a function and provide a default response.
