@@ -195,6 +195,69 @@ Invalid Argumets:
 
 6. Write a Python program that implements a decorator to retry a function multiple times in case of failure.
 
+ # Imagine a scenario where you are trying to simulate checking a server's status, 
+ # but the server might occasionally fail to respond. 
+ # You want to retry a few times before giving up.
+
+# :: Solution ::
+
+import random
+import time
+
+def retry_decorator(retries=3, delay=1):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            attempts = 0
+            while attempts < retries:
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    attempts += 1
+                    print(f"Attempt {attempts} failed: {e}")
+                    if attempts < retries:
+                        print(f"Retrying in {delay} seconds...")
+                        time.sleep(delay)
+            print(f"Failed after {retries} attempts.")
+        return wrapper
+    return decorator
+
+
+@retry_decorator(retries=3, delay=2)
+def check_server_status():
+    print("Checking server status...")
+    # Simulate random server failure
+    if random.choice([True, False]):
+        raise ConnectionError("Server not responding")
+    print("Server is up!")
+
+
+# Output :
+
+check_server_status()
+# =>
+Checking server status...
+Attempt 1 failed: Server not responding
+Retrying in 2 seconds...
+Checking server status...
+Attempt 2 failed: Server not responding
+Retrying in 2 seconds...
+Checking server status...
+Server is up!
+
+check_server_status()
+
+Checking server status...
+Attempt 1 failed: Server not responding
+Retrying in 2 seconds...
+Checking server status...
+Attempt 2 failed: Server not responding
+Retrying in 2 seconds...
+Checking server status...
+Server is up!
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 7. Write a Python program that implements a decorator to enforce rate limits on a function.
 
 8. Write a Python program that implements a decorator to add logging functionality to a function.
