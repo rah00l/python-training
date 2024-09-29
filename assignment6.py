@@ -301,8 +301,51 @@ Rate limit exceeded. Please wait 0.80 seconds.
 Hello, Rahul!
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 8. Write a Python program that implements a decorator to add logging functionality to a function.
 
+
+# :: Solution ::
+
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def log_function_call(func):
+    """Decorator to log function calls."""
+    def wrapper(*args, **kwargs):
+        # Log the function name and arguments
+        logging.info(f'Calling function: {func.__name__} with arguments: {args} and keyword arguments: {kwargs}')
+        
+        # Call the actual function
+        result = func(*args, **kwargs)
+        
+        # Log the result
+        logging.info(f'Function: {func.__name__} returned: {result}')
+        return result
+    return wrapper
+
+@log_function_call
+def add(a, b):
+    """Add two numbers."""
+    return a + b
+
+# Output :
+2024-09-29 10:01:00,867 - INFO - Calling function: add with arguments: (4, 5) and keyword arguments: {}
+2024-09-29 10:01:00,868 - INFO - Function: add returned: 9
+
+@log_function_call
+def multiply(a, b):
+    """Multiply two numbers."""
+    return a * b
+
+# Example usage
+if __name__ == "__main__":
+    sum_result = add(5, 3)
+    product_result = multiply(4, 7)
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 9. Write a Python program that implements a decorator to handle exceptions raised by a function and provide a default response.
 
 10. Write a Python program that implements a decorator to enforce type checking on the arguments of a function.
