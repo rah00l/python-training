@@ -81,6 +81,34 @@ Exection Time: 0.0010001659393310547
 
 # :: Solution ::
 
+def convert_to_a_specified_data_type(func):
+    def wrapper(*args, **kwargs):
+        # Extract the target_type from kwargs and remove it before passing to the original function
+        target_type = kwargs.pop('target_type', None)  # Remove target_type from kwargs
+        result = func(*args, **kwargs)  # Get the function result
+        if target_type:
+            return target_type(result)  # Convert result to the desired type
+        return result  # Return as is if no type specified
+    return wrapper
+
+@convert_to_a_specified_data_type
+def greet(name):
+    return name
+
+# Calling without specifying a target type (no conversion)
+print(greet('Hello!'))  # Output: 'Hello!' (no conversion)
+
+
+print(greet('123'))  # Output: 123 (as int)
+
+greet('123', target_type=float) # Otput: 123.0 (as float)
+
+@convert_to_a_specified_data_type()
+def add(a, b):
+    return a + b
+
+add(5, 7, target_type=float)  # Output: 12.0 (as float)
+
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 4. Write a Python program that implements a decorator to cache the result of a function.
