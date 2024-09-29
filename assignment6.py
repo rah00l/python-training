@@ -398,9 +398,86 @@ get_first_element([])
 0
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 10. Write a Python program that implements a decorator to enforce type checking on the arguments of a function.
 
+# :: Solution ::
+
+def type_check(expected_type):
+    def decorator(func):
+        def wrapper(arg):
+            if not isinstance(arg, expected_type):
+                raise TypeError(f"Expcted argument type {expected_type.__name__} and got {type(arg).__name__} ")
+                # raise TypeError(f'Expected {expected_type.__name__}, got {type(arg).__name__}')
+
+            return func(arg)
+        return wrapper
+    return decorator
+
+@type_check(int)
+def double(a):
+    return a * 2
+
+double(2)
+#=>
+4
+
+double('2')
+#=>
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+Cell In[286], line 1
+----> 1 double('2')
+
+Cell In[283], line 5, in type_check.<locals>.decorator.<locals>.wrapper(arg)
+      3 def wrapper(arg):
+      4     if not isinstance(arg, expected_type):
+----> 5         raise TypeError(f"Expcted argument type {expected_type.__name__} and got {type(arg).__name__} ")
+      6         # raise TypeError(f'Expected {expected_type.__name__}, got {type(arg).__name__}')
+      8     return func(arg)
+
+TypeError: Expcted argument type int and got str 
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 11. Write a Python program that implements a decorator to measure the memory usage of a function.
+
+# :: Solution ::
+
+import tracemalloc
+
+def memory_usage_decorator(func):
+    """Decorator to measure memory usage of a function."""
+    def wrapper(*args, **kwargs):
+        tracemalloc.start()  # Start tracking memory allocation
+
+        result = func(*args, **kwargs)
+
+        current, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()  # Stop tracking memory allocation
+
+        memory_used = peak / (1024 * 1024)  # Convert to MB
+        print(f'Memory used: {memory_used:.2f} MB')
+        return result
+    return wrapper
+
+
+@memory_usage_decorator
+def generate_large_list(n):
+    """Generate a large list of numbers."""
+    return [i for i in range(n)]
+
+
+if __name__ == "__main__":
+    result = generate_large_list(10**6)  # Adjust the number for larger lists
+    print(f'List length: {len(result)}')
+
+# Output
+Memory used: 19.28 MB
+List length: 1000000    
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 12. Write a Python program that implements a decorator to provide caching with expiration time for a function.
 
