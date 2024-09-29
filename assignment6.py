@@ -113,6 +113,59 @@ add(5, 7, target_type=float)  # Output: 12.0 (as float)
 
 4. Write a Python program that implements a decorator to cache the result of a function.
 
+# :: Solution ::
+
+def cache_decorator(func):
+    cache = {}	# Cache dictionary to store function results
+
+    def wrapper(args):
+        if args in cache:
+            print(f"{args} Available in Cache:")
+            return cache[args] # Return cached result
+        else:
+            result = func(args)	# Call original function
+            cache[args] = result	# Cache the result
+            print(f"{args} computed with function:")
+            return result
+    return wrapper
+
+@cache_decorator
+def square(n):
+    return n*n
+
+# Output ::
+
+square(4)
+# =>
+4 computed with function:
+16
+
+square(4)
+# =>
+4 Available in Cache:
+16
+
+square(5)
+# =>
+5 computed with function:
+25
+
+square(4)
+# =>
+4 Available in Cache:
+16
+
+square(6)
+# =>
+6 computed with function:
+36
+
+square(6)
+# =>
+6 Available in Cache:
+36
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 5. Write a Python program that implements a decorator to validate function arguments based on a given condition.
 
 6. Write a Python program that implements a decorator to retry a function multiple times in case of failure.
