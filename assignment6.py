@@ -194,6 +194,7 @@ Valid Arguments:
 add(2, -3)
 # =>
 Invalid Argumets:
+
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 6. Write a Python program that implements a decorator to retry a function multiple times in case of failure.
@@ -346,8 +347,57 @@ if __name__ == "__main__":
     product_result = multiply(4, 7)
 
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 9. Write a Python program that implements a decorator to handle exceptions raised by a function and provide a default response.
 
+# :: Solution ::
+
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def handle_exceptions(default_response):
+    """Decorator to handle exceptions and return a default response."""
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                logging.error(f'Error in {func.__name__}: {e}')
+                return default_response
+        return wrapper
+    return decorator
+
+@handle_exceptions("An error occurred.")
+def divide(a, b):
+    """Divide two numbers."""
+    return a / b
+
+@handle_exceptions(0)
+def get_first_element(lst):
+    """Get the first element of a list."""
+    return lst[0]
+
+# Example usage
+if __name__ == "__main__":
+    print(divide(10, 2))    # Should print 5.0
+    print(divide(10, 0))    # Should print "An error occurred."
+
+    print(get_first_element([1, 2, 3]))  # Should print 1
+    print(get_first_element([]))          # Should print 0
+
+
+# Output ::
+2024-09-29 11:02:47,823 - ERROR - Error in divide: division by zero
+'An error occurred.'
+
+
+get_first_element([])
+2024-09-29 11:03:43,069 - ERROR - Error in get_first_element: list index out of range
+0
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 10. Write a Python program that implements a decorator to enforce type checking on the arguments of a function.
 
 11. Write a Python program that implements a decorator to measure the memory usage of a function.
