@@ -164,9 +164,34 @@ square(6)
 # =>
 6 Available in Cache:
 36
+
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 5. Write a Python program that implements a decorator to validate function arguments based on a given condition.
+
+def validate_arguments(func):
+    def wrapper(a, b):
+        if a > 0 and b > 0: # Validate arguments
+            print('Valid Arguments:')
+            return func(a, b) # Call original function
+        else:
+            print('Invalid Argumets:')
+    return wrapper
+
+
+@validate_arguments
+def add(a, b):
+    return a + b
+
+add(2, 3)
+# =>
+Valid Arguments:
+5
+
+add(2, -3)
+# =>
+Invalid Argumets:
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 6. Write a Python program that implements a decorator to retry a function multiple times in case of failure.
 
