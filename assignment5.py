@@ -10,7 +10,63 @@ f) Day of year
 g) Day of the month
 h) Day of week
 
+
+# :: Solution ::
+
+import datetime
+
+# Current date and time
+current_datetime = datetime.datetime.now()
+print("Current date and time:", current_datetime)
+
+# Current year
+current_year = current_datetime.year
+print("Current year:", current_year)
+
+# Month of year
+current_month = current_datetime.strftime("%B")  # Full month name
+print("Month of year:", current_month)
+
+# Week number of the year
+week_number = current_datetime.strftime("%U")  # Week number of the year
+print("Week number of the year:", week_number)
+
+# Weekday of the week
+weekday = current_datetime.strftime("%A")  # Full weekday name
+print("Weekday of the week:", weekday)
+
+# Day of year
+day_of_year = current_datetime.strftime("%j")  # Day number of the year
+print("Day of the year:", day_of_year)
+
+# Day of the month
+day_of_month = current_datetime.day
+print("Day of the month:", day_of_month)
+
+# Day of week (numeric)
+day_of_week_numeric = current_datetime.weekday()  # Monday is 0 and Sunday is 6
+print("Day of the week (numeric):", day_of_week_numeric)
+
+
+# Sample Output:
+
+Current date and time: 2024-10-06 05:53:37.964000
+Current year: 2024
+Month of year: October
+Week number of the year: 40
+Weekday of the week: Sunday
+Day of the year: 280
+Day of the month: 6
+Day of the week (numeric): 6
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 2. Write a Python program to determine whether a given year is a leap year.
+
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 3. Write a Python program to convert a string to datetime.
 Sample String : Jul 1 2014 2:43PM
