@@ -90,29 +90,193 @@ else:
 Sample String : Jul 1 2014 2:43PM
 Expected Output : 2014-07-01 14:43:00
 
+# :: Solution ::
+
+from datetime import datetime
+date_string = "Jul 1 2014 2:43PM"
+
+date_object = datetime.strptime(date_string, '%b %d %Y %I:%M%p')
+
+print(date_object)
+
+#=>
+2014-07-01 14:43:00
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 4. Write a Python program to get the current time in Python.
 Sample Format :  13:19:49.078205
+
+# :: Solution ::
+
+from datetime import datetime
+
+# Get the current time with microseconds
+current_time = datetime.now()
+
+# Print the current time including microseconds
+print("Current time:", current_time.time())
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 5. Write a Python program to subtract five days from the current date.
 Sample Date :
 Current Date : 2015-06-22
 5 days before Current Date : 2015-06-17
 
+
+# :: Solution ::
+
+from datetime import datetime, timedelta
+
+# Get the current date
+current_date = datetime.now()
+
+# Subtract five days from the current date
+five_days_before = current_date - timedelta(days=5)
+
+# Print the results
+print("Current Date :", current_date.strftime('%Y-%m-%d'))
+print("5 days before Current Date :", five_days_before.strftime('%Y-%m-%d'))
+
+# Sample Output:
+Current Date : 2023-10-06
+5 days before Current Date : 2023-10-01
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
+
 6. Write a Python program to convert a Unix timestamp string to a readable date.
 Sample Unix timestamp string : 1284105682
 Expected Output : 2010-09-10 13:31:22
 
+# :: Solution ::
+from datetime import datetime
+
+# Sample Unix timestamp string
+timestamp_string = "1284105682"
+
+# Convert the timestamp string to an integer
+timestamp = int(timestamp_string)
+
+# Convert the Unix timestamp to a readable date
+readable_date = datetime.fromtimestamp(timestamp)
+
+# Print the results
+print("Readable Date:", readable_date.strftime('%Y-%m-%d %H:%M:%S'))
+
+
+# Output:
+Readable Date: 2010-09-10 13:31:22
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 7. Write a Python program to print yesterday, today, tomorrow.
+
+# :: Solution ::
+
+from datetime import datetime, timedelta
+
+# Get today's date
+today = datetime.now()
+
+# Calculate yesterday and tomorrow
+yesterday = today - timedelta(days=1)
+tomorrow = today + timedelta(days=1)
+
+# Print the results
+print("Yesterday:", yesterday.strftime('%Y-%m-%d'))
+print("Today:", today.strftime('%Y-%m-%d'))
+print("Tomorrow:", tomorrow.strftime('%Y-%m-%d'))
+
+# Output:
+Yesterday: 2024-10-05
+Today: 2024-10-06
+Tomorrow: 2024-10-07
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 8. Write a Python program to convert the date to datetime (midnight of the date) in Python.
 Sample Output : 2015-06-22 00:00:00
 
+# :: Solution ::
+
+from datetime import datetime, date
+
+# Sample date
+sample_date = date(2015, 6, 22)
+
+# Convert to datetime at midnight
+# datetime.min.time(), which represents midnight (00:00:00)
+midnight_datetime = datetime.combine(sample_date, datetime.min.time())
+
+# Print the result
+print("Converted datetime:", midnight_datetime)
+
+# Output:
+Converted datetime: 2015-06-22 00:00:00
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 9. Write a Python program to print the next 5 days starting today.
+
+# :: Solution ::
+
+from datetime import datetime, timedelta
+
+# Get today's date
+today = datetime.now()
+
+# Print today's date
+print("Today:", today.date())
+
+# Print the next 5 days
+print("Next 5 days:")
+for i in range(1, 6):
+    next_day = today + timedelta(days=i)
+    print(next_day.date())
+
+
+# Output:
+Today: 2024-10-06
+Next 5 days:
+2024-10-07
+2024-10-08
+2024-10-09
+2024-10-10
+2024-10-11
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 10. Write a Python program to add 5 seconds to the current time.
 Sample Data :
 13:28:32.953088
 13:28:37.953088
+
+# :: Solution ::
+
+from datetime import datetime, timedelta
+
+# Get the current time
+current_time = datetime.now().time()
+
+# Print the current time
+print("Current Time:", current_time)
+
+# Create a timedelta of 5 seconds
+time_to_add = timedelta(seconds=5)
+
+# Add 5 seconds to the current time
+new_time = (datetime.combine(datetime.today(), current_time) + time_to_add).time()
+
+# Print the new time
+print("New Time after adding 5 seconds:", new_time)
+
+
+# Output:
+Current Time: 06:34:18.961000
+New Time after adding 5 seconds: 06:34:23.961000
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 11. Write a Python program to convert Year/Month/Day to Day of Year in Python.
 
