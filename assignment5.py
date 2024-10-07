@@ -280,17 +280,193 @@ New Time after adding 5 seconds: 06:34:23.961000
 
 11. Write a Python program to convert Year/Month/Day to Day of Year in Python.
 
+# :: Solution ::
+
+from datetime import datetime
+
+# Function to convert Year/Month/Day to Day of Year
+def convert_to_day_of_year(year, month, day):
+    # Create a date object
+    date_obj = datetime(year, month, day)
+    # Get the day of the year
+    day_of_year = date_obj.timetuple().tm_yday
+    return day_of_year
+
+# Sample input
+year = 2023
+month = 10
+day = 6
+
+# Convert and print the result
+day_of_year = convert_to_day_of_year(year, month, day)
+print(f"Date: {year}/{month}/{day} is the {day_of_year} day of the year.")
+
+
+# Output:
+Date: 2023/10/6 is the 279 day of the year.
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 12. Write a Python program to get the current time in milliseconds in Python.
+
+# :: Solution ::
+
+import time
+
+# Get the current time in milliseconds
+current_time_millis = int(time.time() * 1000)
+
+# Print the current time in milliseconds
+print(f"Current time in milliseconds: {current_time_millis}")
+
+# Output:
+Current time in milliseconds: 1728177247908
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 13. Write a Python program to get the week number.
 Sample Date : 2015, 6, 16
 Expected Output : 25
 
+# :: Solution ::
+from datetime import datetime
+
+# Get the current date
+current_date = datetime.now()
+
+# Get the week number of the year
+week_number = current_date.isocalendar()[1]
+
+# Print the current date and the week number
+print(f"Current Date: {current_date.strftime('%Y-%m-%d')}")
+print(f"Week Number: {week_number}")
+
+# Output:
+Current Date: 2024-10-06
+Week Number: 40
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 14. Write a Python program to find the date of the first Monday of a given week.
 Sample Year and week : 2015, 50
 Expected Output : Mon Dec 14 00:00:00 2015
 
+# :: Solution ::
+from datetime import datetime, timedelta
+
+def first_monday(year, week):
+    # Calculate the first day of the specified week
+    # The first_monday function takes year and week as parameters and calculates 
+    # the date of the first Monday of that week using the fromisocalendar() method.
+    first_day_of_week = datetime.fromisocalendar(year, week, 1)  # 1 corresponds to Monday
+    return first_day_of_week
+
+# Sample Year and Week
+year = 2015
+week = 50
+
+# Get the date of the first Monday of the specified week
+date_of_first_monday = first_monday(year, week)
+
+# Print the result
+print(f"First Monday of week {week} in {year}: {date_of_first_monday.strftime('%a %b %d %H:%M:%S %Y')}")
+
+# Output:
+First Monday of week 50 in 2015: Mon Dec 07 00:00:00 2015
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 15. Write a Python program to select all the Sundays in a specified year.
+
+# :: Solution ::
+
+from datetime import datetime, timedelta
+
+def get_sundays(year):
+    # List to store all Sundays
+    sundays = []
+    
+    # Start from January 1 of the specified year
+    date = datetime(year, 1, 1)
+    
+    # Loop through all days of the year
+    while date.year == year:
+        # Check if the day is a Sunday (0 = Monday, 6 = Sunday)
+        if date.weekday() == 6:  # 6 corresponds to Sunday
+            sundays.append(date)
+        date += timedelta(days=1)  # Move to the next day
+
+    return sundays
+
+# Sample Year
+year = 2023
+
+# Get all Sundays in the specified year
+sundays_in_year = get_sundays(year)
+
+# Print the results
+print(f"All Sundays in the year {year}:")
+for sunday in sundays_in_year:
+    print(sunday.strftime('%Y-%m-%d'))
+
+# Output:
+
+All Sundays in the year 2023:
+2023-01-01
+2023-01-08
+2023-01-15
+2023-01-22
+2023-01-29
+2023-02-05
+2023-02-12
+2023-02-19
+2023-02-26
+2023-03-05
+2023-03-12
+2023-03-19
+2023-03-26
+2023-04-02
+2023-04-09
+2023-04-16
+2023-04-23
+2023-04-30
+2023-05-07
+2023-05-14
+2023-05-21
+2023-05-28
+2023-06-04
+2023-06-11
+2023-06-18
+2023-06-25
+2023-07-02
+2023-07-09
+2023-07-16
+2023-07-23
+2023-07-30
+2023-08-06
+2023-08-13
+2023-08-20
+2023-08-27
+2023-09-03
+2023-09-10
+2023-09-17
+2023-09-24
+2023-10-01
+2023-10-08
+2023-10-15
+2023-10-22
+2023-10-29
+2023-11-05
+2023-11-12
+2023-11-19
+2023-11-26
+2023-12-03
+2023-12-10
+2023-12-17
+2023-12-24
+2023-12-31    
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 
 16. Write a Python program to add year(s) to a given date and display the updated date.
 Sample Data : (addYears is the user defined function name)
@@ -304,15 +480,35 @@ Expected Output :
 2017-01-01
 2001-03-01
 
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 17. Write a Python program to drop microseconds from datetime.
+
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 18. Write a Python program to get days between two dates.
 Sample Dates : 2000,2,28, 2001,2,28
 Expected Output : 366 days, 0:00:00
 
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 19. Write a Python program to get the date of the last Tuesday.
 
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
 20. Write a Python program to test the third Tuesday of a month.
+
+# :: Solution ::
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
 21. Write a Python program to get the last day of a specified year and month.
 
